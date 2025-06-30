@@ -1,0 +1,24 @@
+﻿@using EventOn.BusinessLogic.Helpers
+@using EventOn.API.Models
+@inherits LayoutComponentBase
+
+<div class="@GetThemeClass()">
+    <div class="page">
+        @if (!string.IsNullOrWhiteSpace(UserData.Instance.Username))
+        {
+            <div class="sidebar">
+                <NavMenu />
+            </div>
+        }
+        <main>
+            <article class="content px-2">
+                @Body
+            </article>
+        </main>
+    </div>
+</div>
+
+@code {
+    private string GetThemeClass() =>
+        UserData.Instance.Preferences.SelectedTheme == API.Models.Enums.Theme.Dark ? "dark-mode" : "light-mode";
+}

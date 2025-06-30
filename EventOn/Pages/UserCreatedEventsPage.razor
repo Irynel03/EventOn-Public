@@ -1,0 +1,35 @@
+@page "/user-created-events"
+
+<Toast @ref="toast" />
+
+@if (!_dataLoaded)
+{
+    <Spinner></Spinner>
+}
+else if (_fullEvents == null)
+{
+    <p><em>Loading events...</em></p>
+}
+else if (!_fullEvents.Any())
+{
+    <p>No events found.</p>
+}
+else
+{
+    <div class="events-list">
+        @foreach (var e in _fullEvents)
+        {
+            <div class="event-item">
+
+                <span class="event-name">@e.Name</span>
+
+                <div class="event-actions">
+                    <button class="event-button event-button-delete" @onclick="(() => DeleteEvent(e.Id))" title="Delete Event">Delete</button>
+                    <button class="event-button event-button-goto" @onclick="(() => NavigateToEvent(e.Id))" title="Go to Event Details">Go To</button>
+                    <button class="event-button event-button-scan" @onclick="(() => ScanQRCode(e.Id))" title="Scan QR Code">Scan QR</button>
+                </div>
+
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,68 @@
+﻿@page "/orders"
+@inject NavigationManager Navigation
+
+<Toast @ref="toast" />
+
+<h2 class="orders-title">Your Orders</h2>
+
+@if (_orders == null)
+{
+    <div class="loading-message-container">
+        <Spinner></Spinner>
+    </div>
+}
+else if (_orders.Count == 0)
+{
+    <h5 class="orders-empty-message">You don't have any orders yet.</h5>
+}
+else
+{
+    <ul class="orders-list">
+        @foreach (var order in _orders)
+        {
+            <li class="order-item">
+                <div class="order-button-container">
+                    <button class="order-button" @onclick="() => NavigateToEvent(order.EventId)">
+                        <div class="order-details">
+                            <span class="order-id">@order.EventName.ToString()</span>
+                            <span class="order-date">@order.Date.ToString("dd MMMM yyyy")</span>
+                        </div>
+                        @* Arrow removed from here *@
+                    </button>
+                    <button class="qr-code-button" @onclick="() => ShowQrCodePrompt(order.Id)">
+                        <span class="qr-code-icon">QR</span>
+                    </button>
+                </div>
+            </li>
+        }
+    </ul>
+}
+
+@if (_showQrCodePrompt)
+{
+    <div class="modal-overlay" @onclick="CloseQrCodePrompt">
+        <div class="modal-content" @onclick:stopPropagation="true">
+            <h3>QR Code for your order</h3>
+
+            <div class="qr-code-container">
+                @if (!string.IsNullOrEmpty(_qrCodeImageSource))
+                {
+                    <img src="@_qrCodeImageSource" alt="QR Code" width="200" height="200" />
+                }
+                else if (!string.IsNullOrEmpty(_qrCodeError))
+                {
+                    <p class="error-message">Error generating QR code: @_qrCodeError</p>
+                }
+                else
+                {
+                    <div class="loading-message-container">
+                        <Spinner></Spinner>
+                        <p class="loading-message">Generating QR code...</p>
+                    </div>
+                }
+            </div>
+
+            <button class="button primary close-button" @onclick="CloseQrCodePrompt">Close</button>
+        </div>
+    </div>
+}

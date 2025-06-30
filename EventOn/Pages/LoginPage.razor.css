@@ -1,0 +1,51 @@
+.forgot-password {
+    color: #007bff;
+    text-align: right;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dark-mode .form-control {
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #555;
+}
+
+.dark-mode .btn-primary {
+    background-color: #0056b3;
+    border-color: #004485;
+}
+
+    .dark-mode .btn-primary:hover {
+        background-color: #004095;
+    }
+
+.dark-mode .forgot-password {
+    color: #89CFF0;
+}
+
+    .dark-mode .forgot-password:hover {
+        color: #B0E0E6;
+        text-decoration: underline;
+    }
+
+.dark-mode .login-page {
+    background-color: #232323;
+    color: #ddd;
+    border-radius: 10px;
+}
+
+.dark-mode .text-center {
+    color: #ccc;
+}

@@ -1,0 +1,45 @@
+﻿@page "/feed"
+@using EventOn.API.Models
+@using EventOn.Components
+
+<Toast @ref="toast" />
+
+<div class="search-filter-bar">
+    <input type="text" @bind="_searchTerm" placeholder="Search events..." />
+    <button type="button" class="search-btn" @onclick="OnSearch">
+        <i class="bi bi-search"></i>
+    </button>
+    <button type="button" class="filter-btn" @onclick="ToggleFilter">
+        <i class="bi bi-filter-alt"></i>
+        <span>Filter</span>
+    </button>
+</div>
+
+@if (_isFilterVisible)
+{
+    <EventFilter FilterCriteria="_filterCriteria"
+                 OnFilterApplied="OnFilterApplied"
+                 OnCloseFilter="ToggleFilter" />
+}
+
+@if (!_dataLoaded)
+{
+    <Spinner></Spinner>
+}
+else if (_filteredEvents?.Count > 0)
+{
+    @foreach (var eventData in _filteredEvents)
+    {
+        <EventBrowse Event="eventData" IsRecommended="eventData.IsRecommended" />
+    }
+}
+else if ((!string.IsNullOrWhiteSpace(_searchTerm) || _filterApplied))
+{
+    <p>No events match your search criteria or filters.</p>
+}
+else if (_filteredEvents?.Count == 0)
+{
+    <p>No events available</p>
+}
+
+<Chatbot />

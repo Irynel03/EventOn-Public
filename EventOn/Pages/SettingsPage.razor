@@ -1,0 +1,174 @@
+@page "/settings"
+@using EventOn.BusinessLogic.Helpers
+
+<Toast @ref="toast" />
+
+@if (IsPromptOpened)
+{
+    <div class="settings-page">
+        <h3 class="page-title">Settings</h3>
+        <div class="settings-options">
+            <div class="settings-item">
+                <button class="btn btn-primary" @onclick="OpenChangeAccountPrompt">
+                    <i class="bi bi-person-circle"></i> Change Account
+                </button>
+            </div>
+
+            <div class="settings-item">
+                <button class="btn btn-primary" @onclick="OpenChangePasswordPrompt">
+                    <i class="bi bi-key"></i> Change Password
+                </button>
+            </div>
+
+            <div class="settings-item">
+                <button class="btn btn-primary" @onclick="OpenCardInfoPrompt">
+                    @if (UserData.Instance.HasCard)
+                    {
+                        <span><i class="bi bi-info-circle"></i> Show Card Info </span>
+                    }
+                    else
+                    {
+                        <span><i class="bi bi-info-circle"></i> Add Card </span>
+                    }
+                </button>
+            </div>
+
+            <div class="settings-item">
+                <button class="btn btn-primary" @onclick="OpenNotificationsPrompt">
+                    <i class="bi bi-bell"></i> Notifications
+                </button>
+            </div>
+
+            <div class="settings-item">
+                <button class="btn btn-secondary" @onclick="ToggleTheme">
+                    @ThemeButtonText
+                </button>
+            </div>
+
+            <div class="settings-item">
+                <button class="btn btn-danger" @onclick="OpenDeleteAccountPrompt">
+                    <i class="bi bi-trash"></i> Delete Account
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@if (_showChangePasswordPromt)
+{
+    <div class="settings-page">
+        <div class="settings-options">
+            <h4>Change Password</h4>
+            <label>New Password:</label>
+            <input type="password" @bind="newPassword" class="form-control" />
+            <label>Confirm Password:</label>
+            <input type="password" @bind="repeatedPassword" class="form-control" />
+            <button class="btn btn-primary mt-2" @onclick="ChangePassword">Change</button>
+            <button class="btn btn-secondary mt-2" @onclick="BackToMainSettingsPage">Cancel</button>
+        </div>
+    </div>
+}
+
+@if (_showDeleteAccountPromt)
+{
+    <div class="settings-page">
+        <div class="settings-options">
+            <h4>Delete Account</h4>
+            <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+            <button class="btn btn-danger mt-2" @onclick="DeleteAccount">Delete</button>
+            <button class="btn btn-secondary mt-2" @onclick="BackToMainSettingsPage">Back</button>
+        </div>
+    </div>
+}
+
+@if (_showChangeAccountPromt)
+{
+    <div class="settings-page">
+        <div class="settings-options">
+            <h4>Change Account</h4>
+            <p>Are you sure you want to Log out?</p>
+            <button class="btn btn-danger mt-2" @onclick="ChangeAccount">Log out</button>
+            <button class="btn btn-secondary mt-2" @onclick="BackToMainSettingsPage">Back</button>
+        </div>
+    </div>
+}
+
+@if (_showCardInfoPromt)
+{
+    @if (UserData.Instance.HasCard)
+    {
+        <div class="card-info">
+            <p class="card-number">4242 4242 4242 4242</p>
+            <p class="card-extra">Exp: 12/26 &nbsp; | &nbsp; CVC: ***</p>
+            <p class="balance">Balance: @UserData.Instance.Balance RON</p>
+        </div>
+
+        <button class="btn btn-primary" @onclick="OpenAddMoneyPrompt">Add money</button>
+        <button class="btn btn-secondary mt-2" @onclick="BackToMainSettingsPage">Back</button>
+    }
+    else
+    {
+        <button class="btn btn-primary" @onclick="CreateCard">Create Card</button>
+        <button class="btn btn-secondary mt-2" @onclick="BackToMainSettingsPage">Back</button>
+    }
+}
+
+@if (_showAddMoneyPrompt)
+{
+    <div class="popup-overlay">
+        <div class="popup-content">
+            <h3>Add Money</h3>
+            <input type="number" step="0.01" min="0" @bind="AmountToAdd" placeholder="Enter amount" class="money-input" />
+            <div class="popup-buttons">
+                <button class="btn btn-primary" @onclick="AddMoney">Add amount</button>
+                <button class="btn btn-danger" @onclick="CloseAddMoneyPrompt">Cancel</button>
+            </div>
+        </div>
+    </div>
+}
+
+@if (_showNotificationsPrompt)
+{
+    <div class="settings-page">
+        <h3 class="page-title">Notification Preferences</h3>
+        <div class="settings-options">
+
+            <div class="settings-item notification-item">
+                <label>Disable All Notifications</label>
+                <RadzenSwitch @bind-Value="_notificationPreferences.AllDisabled" TValue="bool" />
+            </div>
+
+            <div class="settings-item notification-item">
+                <label>Followed Performer Notifications</label>
+                <RadzenSwitch @bind-Value="_notificationPreferences.FollowedPerformer" TValue="bool" />
+            </div>
+
+            <div class="settings-item notification-item">
+                <label>Comment Like Notifications</label>
+                <RadzenSwitch @bind-Value="_notificationPreferences.CommentLike" TValue="bool" />
+            </div>
+
+            <div class="settings-item notification-item">
+                <label>Comment Post Notifications</label>
+                <RadzenSwitch @bind-Value="_notificationPreferences.CommentPost" TValue="bool" />
+            </div>
+
+            <div class="settings-item notification-item">
+                <label>New Events Notifications</label>
+                <RadzenSwitch @bind-Value="_notificationPreferences.NewEvents" TValue="bool" />
+            </div>
+
+            <div class="settings-item">
+                <button class="btn btn-primary mt-2" @onclick="SaveNotificationPreferences">
+                    Save
+                </button>
+            </div>
+
+            <div class="settings-item">
+                <button class="btn btn-secondary mt-2" @onclick="BackToMainSettingsPage">
+                    Back
+                </button>
+            </div>
+        </div>
+    </div>
+}

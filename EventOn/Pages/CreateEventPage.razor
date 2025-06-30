@@ -1,0 +1,84 @@
+@page "/create-new-event"
+@inject NavigationManager Navigation
+
+<Toast @ref="toast" />
+
+<div class="event-form">
+    <h2>Create a New Event</h2>
+
+    <div class="form-group">
+        <label for="eventName">Event Name:</label>
+        <input id="eventName" type="text" @bind="_eventName" placeholder="Enter event name" />
+    </div>
+
+    <div class="form-group">
+        <label for="capacity">Capacity:</label>
+        <input id="capacity" type="number" @bind="_capacity" placeholder="Enter capacity" min="1" />
+    </div>
+
+    <div class="form-group">
+        <label for="category">Category:</label>
+        <select id="category" @bind="_category">
+            @foreach (var cat in Enum.GetValues(typeof(EventCategory)))
+            {
+                <option value="@cat">@cat</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <button type="button" @onclick="AddPhotosAsync">Add Photo</button>
+        <div class="photo-preview-container">
+            @foreach (var photo in _photos)
+            {
+                <img src="@($"data:image/jpeg;base64,{Convert.ToBase64String(photo)}")" alt="Photo" class="photo-preview" />
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" @bind="_description" placeholder="Enter event description"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="performers">Performers (comma-separated):</label>
+        <input id="performers" type="text" @bind="_performerInput" placeholder="Enter performer names" />
+        <button type="button" @onclick="AddPerformers" class="small-button">Add Performer</button>
+        <ul class="performer-list">
+            @foreach (var performer in _performers)
+            {
+                <li>@performer</li>
+            }
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input id="price" type="number" @bind="Price" placeholder="Enter price" step="0.01" />
+    </div>
+
+    <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input id="startDate" type="datetime-local" @bind="_startDate" min=DateTime.Today />
+    </div>
+
+    <div class="form-group">
+        <label for="endDate">End Date:</label>
+        <input id="endDate" type="datetime-local" @bind="_endDate" />
+    </div>
+
+    <div>
+        <label for="location" class="location-label">Select Location:</label>
+
+        <div class="location-input-wrapper">
+            <input id="location" type="text" @bind="_location.Name" placeholder="Click on the map to select a location" readonly />
+        </div>
+
+        <div id="map" class="map-container"></div>
+    </div>
+
+    <div class="form-actions">
+        <button class="create-button" @onclick="CreateEvent">Create Event</button>
+    </div>
+</div>

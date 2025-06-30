@@ -1,0 +1,102 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --border-color: #ccc;
+    --input-border-color: #ddd;
+    --input-focus-border-color: #007bff;
+    --input-bg-color: #f8f8f8;
+}
+
+.event-filter {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 1.5rem auto;
+    border: 2px solid #b0b0b0; /* More visible border */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .event-filter h4 {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-bottom: 1px solid #b0b0b0; /* More visible border */
+        padding-bottom: 0.3rem;
+    }
+
+.filter-controls input,
+.filter-controls select {
+    width: 100%;
+    padding: 0.6rem;
+    margin: 0.5rem 0;
+    border: 1.5px solid #c0c0c0; /* More visible border */
+    border-radius: 6px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+    font-size: 0.9rem;
+}
+
+    .filter-controls input:focus,
+    .filter-controls select:focus {
+        border-color: var(--input-focus-border-color);
+        outline: none;
+    }
+
+    .filter-controls input[type="date"]::-webkit-calendar-picker-indicator {
+        padding: 0.3rem;
+    }
+
+.filter-controls .btn-primary {
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+    .filter-controls .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+/* Dark mode adjustments (no changes) */
+.dark-mode .event-filter {
+    background-color: #333;
+    color: #eee;
+    border-color: #555;
+    box-shadow: 0 3px 6px rgba(255, 255, 255, 0.1);
+}
+
+    .dark-mode .event-filter h4 {
+        border-bottom-color: #555;
+    }
+
+    .dark-mode .event-filter .filter-controls input,
+    .dark-mode .event-filter .filter-controls select {
+        background-color: #444;
+        color: #eee;
+        border-color: #555;
+    }
+
+        .dark-mode .event-filter .filter-controls input:focus,
+        .dark-mode .event-filter .filter-controls select:focus {
+            border-color: #57a1ff;
+        }
+
+.dark-mode input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.dark-mode .card,
+.dark-mode .card-body {
+    background-color: #333 !important;
+    color: #eee !important;
+}

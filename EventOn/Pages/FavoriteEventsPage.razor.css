@@ -1,0 +1,147 @@
+.favorites-title {
+    font-size: 2rem;
+    text-align: center;
+    margin: 1rem 0;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+}
+
+.favorites-empty-message {
+    font-size: 1rem;
+    text-align: center;
+    margin: 1rem 0;
+    color: #d32f2f;
+}
+
+.favorites-list {
+    list-style: none;
+    margin: 1rem; /* Keep margin for overall spacing */
+    padding: 0;
+    /* Remove the border and background that create the box */
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    overflow: hidden; /* Keep overflow hidden if needed for other reasons */
+}
+
+.favorite-item {
+    margin-bottom: -1px;
+    transition: background-color 0.15s ease-in-out;
+    border-bottom: 1px solid #eee; /* Keep the separator line between items */
+    background-color: white; /* Add a background to each item if you want */
+    border-radius: 0.5rem; /* Add rounded corners to each item if desired */
+    margin-bottom: 0.5rem; /* Add some space between items */
+}
+
+    .favorite-item:last-child {
+        border-bottom: none;
+        margin-bottom: 1rem; /* Adjust spacing for the last item */
+    }
+
+    .favorite-item:hover {
+        background-color: #f8f9fa;
+    }
+
+.favorite-item-container {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+}
+
+.favorite-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    margin-right: 1rem;
+}
+
+.favorite-details {
+    flex-grow: 1;
+}
+
+.favorite-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #212529;
+}
+
+.favorite-date {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.go-to-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.15s ease-in-out;
+    margin-left: auto;
+}
+
+    .go-to-button:hover {
+        background-color: #0056b3;
+    }
+
+.loading-message {
+    text-align: center;
+    font-size: 1rem;
+    color: #6c757d;
+    margin: 2rem 0;
+}
+
+.dark-mode {
+    background-color: #1a1a1a;
+    color: #d4d4d4;
+}
+
+    .dark-mode .favorites-title {
+        color: #eee;
+        border-bottom-color: #555;
+    }
+
+    .dark-mode .favorites-empty-message {
+        color: #f44336;
+    }
+
+    .dark-mode .favorites-list {
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        border-color: #555;
+    }
+
+    .dark-mode .favorite-item {
+        border-bottom-color: #444;
+        background-color: #333;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+        .dark-mode .favorite-item:hover {
+            background-color: #444;
+        }
+
+    .dark-mode .favorite-image {
+        border: 1px solid #333;
+    }
+
+    .dark-mode .favorite-details {
+        color: #d4d4d4;
+    }
+
+    .dark-mode .favorite-name {
+        color: #eee;
+    }
+
+    .dark-mode .favorite-date {
+        color: #bbb;
+    }
+
+    .dark-mode .loading-message {
+        color: #c5c5c5;
+    }

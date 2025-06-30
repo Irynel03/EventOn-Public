@@ -1,0 +1,204 @@
+.settings-page {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.settings-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.settings-item {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+    button i {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    button.btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+        button.btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    button.btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+        button.btn-danger:hover {
+            background-color: #a71d2a;
+        }
+
+.card-info {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: auto px;
+    margin: 20px auto;
+    font-family: "Arial", sans-serif;
+}
+
+    .card-info p {
+        margin: 8px 0;
+        font-size: 1.1rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+.card-number {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.card-extra {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+balance {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #28ffbf;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 10px;
+    display: inline-block;
+    text-shadow: 0 0 8px rgba(40, 255, 191, 0.8);
+    transition: transform 0.2s ease-in-out, background 0.2s ease-in-out;
+}
+
+.card-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.money-input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+    .popup-buttons .btn {
+        width: 45%;
+    }
+
+.dark-mode {
+    background-color: #2b2b2b;
+    color: #eee;
+}
+
+    .dark-mode .settings-page {
+        background-color: #3a3a3a;
+        color: #eee;
+        box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    }
+
+    .dark-mode .page-title {
+        color: #57a1ff;
+    }
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dark-mode .settings-page input,
+.dark-mode .settings-page select,
+.dark-mode .settings-page textarea {
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #555;
+}
+
+    .dark-mode .settings-page input:focus,
+    .dark-mode .settings-page select:focus,
+    .dark-mode .settings-page textarea:focus {
+        border-color: #57a1ff;
+        box-shadow: 0 0 5px #57a1ff;
+    }
+
+.dark-mode .popup-overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode .popup-content {
+    background-color: #3a3a3a;
+    color: #eee;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .money-input {
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #555;
+}

@@ -1,0 +1,13 @@
+﻿<div class="event-filter">
+    <h4>Filter Events</h4>
+    <div class="filter-controls">
+
+        <input type="date" @bind="_startDate" placeholder="Start Date" />
+        <input type="date" @bind="_endDate" placeholder="End Date" />
+        <input type="text" @bind="_location" placeholder="Location" />
+        <input type="number" step="0.01" @bind="MinPrice" placeholder="Min Price" min="0" />
+        <input type="number" step="0.01" @bind="MaxPrice" placeholder="Max Price" min="0" />
+
+        <button class="btn btn-primary mt-3 w-100" @onclick="ApplyFilters">Apply Filters</button>
+    </div>
+</div>

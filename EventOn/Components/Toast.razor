@@ -1,0 +1,6 @@
+@if (_isVisible)
+{
+    <div class="toast-container @(_isError ? "toast-error" : "toast-success")">
+        @Message
+    </div>
+}

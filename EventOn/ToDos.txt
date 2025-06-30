@@ -1,0 +1,73 @@
+
+//-> work on images (dropbox as an option to upload them)
+
+//-> make createEventPage better
+
+//-> try a small deploy(create required docker file etc)
+
+//-> add notifications
+
+// -> deploy api with render.com(probably need to modify the notifications system)
+
+---------------------------------------------------------------------
+
+//-> add chatBot
+
+//-> add recommandation of events
+
+//-> change app photo
+
+//-> loading screens
+
+//-> modify add money method
+
+//-> password reset implementation
+
+X -> calendar sync -> cant connect directly with google/ios calendar easy - but i can add a reminder notification
+--------------------------------- styling_changes
+// -> location improvements - maps for ios and android
+
+// -> implement dark mode
+
+// -> more notifications logic(+ settings to dezactivate)
+
+// -> add more push notifications
+
+-----------------------------------
+
+// -> organizer user
+
+// -> better logic for performers(add on event create - follow their posts and new events)
+
+// -> added automatically deploy for the api with a proper pipeline run in GitHub with Render.com
+
+// -> QR codes tickets, better email services
+
+// -> improve QR codes locally -> have them local stored so a use can access them offline and also a view for that qr code
+
+-> tests(all types)
+
+-> documentatie
+
+// -> separate EventOnApiService - for clean clean code => wont do it
+
+// -> add multilingual (romanian, english, french, german, italian) => wont do it
+
+
+
+
+actiuni diferite in functie de rolul userului
+sistem de payment implementat cu stripe
+stocare a imaginilor in cloud
+recomandari personalizate in functie de interactiunile user-ului cu aplicatia
+interactiuni de urmarire artisti/evenimente, postari comentarii, aprecieri evenimente sau comentariile altor useri
+gestionare solida si securizata a datelor
+optiuni multiple de notificari push din aplicatie
+chat-bot ce recomanda artisti/evenimente in functie de interactiunile user-ului
+implementarea google maps pentru locatiile evenimentelor
+normal/dark mode pentru interfata
+scanare de QrCode a biletelor
+stocare a imaginilor pe cloud cat mai eficient
+testare pe proiectul de backend dar si pe cel de front end
+deploy automat al api-ului folosind .yaml si docker pe render.com
+interfata user-firendly

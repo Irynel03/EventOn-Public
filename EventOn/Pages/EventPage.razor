@@ -1,0 +1,138 @@
+﻿@page "/event/{EventId}"
+@using EventOn.BusinessLogic.Helpers
+
+@inject NavigationManager Navigation
+
+<Toast @ref="toast" />
+
+@if (_selectedEvent != null)
+{
+    <div class="event-hero">
+        <img src="@_selectedEvent.Photos.First()" alt="@_selectedEvent.Name" class="event-hero-image" />
+
+        <span class="favorite-icon" @onclick="AddToFavourites" style="cursor: pointer;">
+            @if (_isFavorite)
+            {
+                <i class="bi bi-star-fill" style="color: gold;"></i>
+            }
+            else
+            {
+                <i class="bi bi-star" style="color: white;"></i>
+            }
+        </span>
+
+        <div class="event-hero-overlay">
+            <h1>@_selectedEvent.Name</h1>
+            <p><i class="bi bi-calendar-event"></i> @GetFormattedDate(_selectedEvent.StartDate, _selectedEvent.EndDate)</p>
+            <p>@_selectedEvent.Price.ToString("C", new System.Globalization.CultureInfo("ro-RO"))</p>
+            <button class="btn btn-success" @onclick="BuyTicket" disabled="@_isBuyingTicket">
+                <i class="bi bi-ticket-perforated"></i> Buy a Ticket
+            </button>
+        </div>
+    </div>
+
+    <div class="event-details">
+        <p>@_selectedEvent.Description</p>
+        <p><strong>Category:</strong> @_selectedEvent.Category</p>
+        <p><strong>Capacity:</strong> @_selectedEvent.Capacity</p>
+        <p><strong>RemainingTickets:</strong> @_selectedEvent.RemainingTickets</p>
+        <p>
+            <strong>Location:</strong>
+            <span @onclick="OpenLocationInMap" style="color: blue; text-decoration: underline; cursor: pointer;">
+                @_selectedEvent.Location.Name
+            </span>
+        </p>
+        <p><strong>Organizer:</strong> @_selectedEvent.OwnerUsername</p>
+
+        <div class="performers-section">
+            <button class="toggle-performers-button" @onclick="TogglePerformers">
+                Performers
+                <i style="margin-left: 5px;"
+                   class="@(_performersCollapsed ? "bi-chevron-down" : "bi-chevron-up")">
+                </i>
+            </button>
+
+            @if (!_performersCollapsed && _selectedEvent.Performers?.Count > 0)
+            {
+                <ul class="performers-list">
+                    @foreach (var performer in _selectedEvent.Performers)
+                    {
+                        bool isFollowed = UserData.Instance.FollowedPerformers.Contains(performer);
+
+                        <li class="performer-item">
+                            <span>@performer</span>
+                            <button class="@(isFollowed ? "unfollow-button" : "follow-button")"
+                                    @onclick="() => ToggleFollowPerformer(performer)">
+                                @(isFollowed ? "Unfollow" : "Follow")
+                            </button>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+
+    <div class="event-photos">
+        <h2>Gallery</h2>
+        @if (_selectedEvent.Photos?.Count > 0)
+        {
+            <div class="photo-gallery">
+                @foreach (var photo in _selectedEvent.Photos)
+                {
+                    <img src="@photo" alt="Event Photo" class="event-photo" />
+                }
+            </div>
+        }
+        else
+        {
+            <p>No photos available for this event.</p>
+        }
+    </div>
+
+    <h2>Comments</h2>
+    <div>
+        <textarea @bind="NewCommentContent" placeholder="Write a comment"></textarea>
+        <button id="post-comment-button" @onclick="PostComment">Post</button>
+    </div>
+
+    @if (_selectedEvent.Comments?.Count > 0)
+    {
+        @foreach (var comment in _selectedEvent.Comments)
+        {
+            <div class="comment d-flex justify-content-between align-items-center">
+                <div>
+                    <p><strong>@comment.UserName:</strong> @comment.Content</p>
+                    <small>@comment.DatePosted.ToShortDateString()</small>
+                </div>
+                <span class="badge bg-info text-dark" @onclick="@(() => LikeComment(comment))"
+                      style="cursor: pointer; display: flex; align-items: center;">
+                    <span>
+                        @if (comment.LikedByUsers.Contains(UserData.Instance.Username))
+                        {
+                            <i class="bi bi-heart-fill" style="color: red;"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-heart" style="color: black;"></i>
+                        }
+                    </span>
+                    <span class="ms-2">@comment.LikedByUsers.Count</span>
+                </span>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No comments yet. Be the first to comment!</p>
+    }
+
+    <div class="event-action" style="margin-bottom: 20px !important;">
+        <button class="btn btn-success btn-lg" @onclick="BuyTicket">
+            <i class="bi bi-ticket-perforated"></i> Buy a Ticket
+        </button>
+    </div>
+}
+else
+{
+    <Spinner></Spinner>
+}

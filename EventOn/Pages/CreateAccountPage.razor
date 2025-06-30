@@ -1,0 +1,29 @@
+﻿@page "/create-account"
+
+<Toast @ref="toast" />
+
+<div class="login-page">
+    <h3 class="text-center">Create new account</h3>
+    <div class="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" @bind="_username" class="form-control" placeholder="Enter your username" />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" @bind="_password" class="form-control" placeholder="Enter your password" />
+        <label for="password">Reenter password:</label>
+        <input type="password" id="password" @bind="_passwordRepeated" class="form-control" placeholder="Reenter your password" />
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" @bind="_email" class="form-control" placeholder="Enter your email" />
+
+        <label for="userType">User Type:</label>
+        <select id="userType" @bind="_userType" class="form-select">
+            @foreach (var userTypeOption in Enum.GetValues(typeof(TypeOfUser)))
+            {
+                <option value="@userTypeOption">@userTypeOption</option>
+            }
+        </select>
+
+        <button class="btn btn-primary mt-3 w-100" @onclick="CreateAccount">Create new account</button>
+    </div>
+</div>

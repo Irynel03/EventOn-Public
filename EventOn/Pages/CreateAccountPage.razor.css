@@ -1,0 +1,23 @@
+.dark-mode .form-control[type="text"],
+.dark-mode .form-control[type="password"] {
+    background-color: #333;
+    color: #ddd;
+    border: 1px solid #555;
+}
+
+    .dark-mode .form-control[type="text"]:focus,
+    .dark-mode .form-control[type="password"]:focus {
+        border-color: #888;
+        box-shadow: 0 0 8px rgba(100, 100, 150, 0.25);
+    }
+
+.dark-mode .form-select {
+    background-color: #333;
+    color: #ddd;
+    border: 1px solid #555;
+}
+
+    .dark-mode .form-select:focus {
+        border-color: #888;
+        box-shadow: 0 0 8px rgba(100, 100, 150, 0.25);
+    }

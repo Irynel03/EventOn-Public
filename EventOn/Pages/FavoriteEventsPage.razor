@@ -1,0 +1,41 @@
+﻿@page "/favorites"
+@inject NavigationManager Navigation
+@inject IEventOnApiService EventOnApiService
+
+@* <Toast @ref="toast" /> *@
+
+<h2 class="favorites-title">Your Favorite Events</h2>
+
+@if (_favoriteEvents == null && !_isLoading)
+{
+                <Spinner></Spinner>
+}
+else if (_isLoading)
+{
+                <p class="loading-message">Loading favorite events...</p>
+}
+else if (_favoriteEvents.Count == 0)
+{
+                <h5 class="favorites-empty-message">You haven't favorited any events yet.</h5>
+}
+else
+{
+    <ul class="favorites-list">
+        @foreach (var eventItem in _favoriteEvents)
+        {
+                <li class="favorite-item" @onclick="() => NavigateToEvent(eventItem.Id)" style="cursor: pointer;">
+                    <div class="favorite-item-container">
+                    @if (eventItem.Photos != null && eventItem.Photos.Any())
+                    {
+                                <img src="@eventItem.Photos.First()" alt="@eventItem.Name" class="favorite-image" />
+                    }
+
+                        <div class="favorite-details">
+                            <span class="favorite-name">@eventItem.Name</span>
+                            <span class="favorite-date">@GetFormattedDate(eventItem.StartDate, eventItem.EndDate)</span>
+                        </div>
+                    </div>
+                </li>
+        }
+    </ul>
+}

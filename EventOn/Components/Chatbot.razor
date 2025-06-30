@@ -1,0 +1,38 @@
+<Toast @ref="toast" />
+
+<div class="chatbot-container">
+    @if (_isExpanded)
+    {
+        <div class="chatbot-box">
+            <h5 class="chatbot-title">Chatbot</h5>
+            <hr class="chatbot-divider" />
+
+            <div class="chat-messages">
+                @foreach (var message in _conversation)
+                {
+                    <div class="chat-message @(message.Sender == "User" ? "user-message" : "chatbot-message")">
+                        <p><strong>@message.Sender:</strong> @message.Message</p>
+
+                        @if (!string.IsNullOrEmpty(message.EventId))
+                        {
+                            <button class="goto-event-button" @onclick="() => NavigateToEvent(message.EventId)">
+                                Go to Event
+                            </button>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="chat-input">
+                <input type="text" @bind="_userMessage" placeholder="Type a message..." />
+                <button class="send-button" @onclick="SendMessage">
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+    }
+
+</div>
+
+<button class="chatbot-toggle" @onclick="ToggleChatbot">
+    <i class="bi bi-chat-dots"></i>
+</button>

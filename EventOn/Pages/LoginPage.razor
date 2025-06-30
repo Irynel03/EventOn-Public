@@ -1,0 +1,38 @@
+@page "/"
+
+<Toast @ref="toast" />
+
+@if (!_autoLoginInProgress)
+{
+    <div class="login-page">
+        <h3 class="text-center">Login</h3>
+        <div class="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" @bind="_username" class="form-control" placeholder="Enter your username"
+                   x:Name="UsernameEntry" AutomationId="username-input" />
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" @bind="_password" class="form-control" placeholder="Enter your password"
+                   x:Name="PasswordEntry" AutomationId="password-input" />
+
+            <button class="btn btn-primary mt-3 w-100" @onclick="Login"
+                    x:Name="LoginButton" AutomationId="login-button">
+                Login
+            </button>
+            <button class="btn btn-primary mt-3 w-100" @onclick="CreateNewAccount">Create new account</button>
+            <p class="forgot-password" @onclick="ForgotPasswordPressed">Forgot Password?</p>
+        </div>
+    </div>
+}
+@if (_showOfflineOrdersPrompt)
+{
+    <div class="offline-prompt">
+        <p>Would you like to view your locally stored orders?</p>
+        <button @onclick="NavigateToOfflineOrders" class="btn btn-primary">View Local Orders</button>
+    </div>
+}
+
+@if (_autoLoginInProgress && !_showOfflineOrdersPrompt)
+{
+    <Spinner></Spinner>
+}
