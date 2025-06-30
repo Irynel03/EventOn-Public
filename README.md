@@ -22,8 +22,8 @@ The EventOn app aims to deliver a comprehensive digital experience, moving beyon
 
 ## Tech Stack
 
-* **Framework**: .NET MAUI 9 (Multi-platform App UI)
-* **Language**: C# and XAML
+* **Framework**: .NET MAUI 9 Hybrid Blazor (Multi-platform App UI)
+* **Language**: C#
 * **Architecture**: MVVM (Model-View-ViewModel)
 * **Local Storage**: Secure Storage for sensitive data like authentication tokens and Preferences for offline ticket data.
 
